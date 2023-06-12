@@ -33,11 +33,13 @@
   border-radius: 6px;
   cursor: pointer;
   opacity: 1;
+  border: 1px solid #fff;
   transition: opacity 0.2s ease-in-out;
 }
 
 .movies-card-list__more-btn:hover {
   opacity: 0.7;
+  border: 1px solid #a0a0a0;
 }
 
 @media screen and (max-width: 850px) {

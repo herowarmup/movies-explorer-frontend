@@ -1,5 +1,5 @@
 .about-project {
-  padding: 110px 70px;
+  padding: 99px 70px;
 }
 
 .about-project__description {
@@ -7,7 +7,7 @@
   list-style: none;
   gap: 40px;
   padding: 0;
-  margin: 70px 0 110px;
+  margin: 70px 0 95px;
 }
 
 .about-project__description-block {
@@ -33,7 +33,7 @@
 .about-project__timeline {
   display: grid;
   grid-template-columns: 1fr 4fr;
-  gap: 14px 0;
+  gap: 0;
 }
 
 .about-project__timeline-title {
@@ -93,6 +93,7 @@
 
   .about-project__description {
     display: block;
+    margin: 60px 0 60px;
   }
 
   .about-project__description-block {
@@ -104,7 +105,8 @@
   }
 
   .about-project__description-title {
-    margin-bottom: 16px;
+    margin-bottom: 15px;
+    line-height: 22px;
   }
 
   .about-project__timeline-title {
@@ -112,18 +114,10 @@
   }
 
   .about-project__timeline-text {
+    margin-top: 0;
     min-width: 100px;
     height: 35px;
     font-size: 11px;
-  }
-
-  .nav-tab__btn-register {
-    font-size: 10px;
-    margin-right: 14px;
-  }
-
-  .nav-tab__btn-login {
-    font-size: 10px;
   }
 
   .about-project__description-title {
@@ -132,5 +126,10 @@
 
   .about-project__description-text {
     font-size: 11px;
+    line-height: 16px;
+  }
+
+  .about-project__timeline {
+    gap: 10px 0;
   }
 }

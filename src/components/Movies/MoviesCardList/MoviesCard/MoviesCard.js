@@ -1,8 +1,12 @@
+import { useLocation } from "react-router-dom";
+
 import "./MoviesCard.css";
 
 import saveIcon from "../../../../images/save.svg";
+import deleteIcon from "../../../../images/delete.svg";
 
 function MoviesCard({ movie }) {
+  const location = useLocation();
   const imageUrl = `https://api.nomoreparties.co/${movie.image.url}`;
 
   function convertToHoursAndMinutes(minutes) {
@@ -17,7 +21,11 @@ function MoviesCard({ movie }) {
       <p className="card__info-duration">
         {convertToHoursAndMinutes(movie.duration)}
       </p>
-      <img className="card__like-btn__icon" src={saveIcon} alt={movie.nameRU} />
+      <img
+        className="card__like-btn__icon"
+        src={`${location.pathname === "/movies" ? saveIcon : deleteIcon}`}
+        alt={movie.nameRU}
+      />
 
       <img className="card__image" src={imageUrl} alt={movie.nameRU} />
     </div>

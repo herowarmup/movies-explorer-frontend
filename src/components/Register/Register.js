@@ -17,10 +17,13 @@ function Register() {
             className="register-form__input"
             id="name-input"
             type="text"
+            placeholder="Введите ваше имя"
+            minLength="2"
+            maxLength="30"
             required
           />
           <span className="register-form__input-error">
-            Что-то пошло не так..
+            Пожалуйста, введите ваше имя.
           </span>
         </label>
         <label className="register-form__field">
@@ -29,10 +32,13 @@ function Register() {
             name="email"
             className="register-form__input"
             type="text"
+            placeholder="Введите ваш email"
+            minLength="2"
+            maxLength="30"
             required
           />
           <span className="register-form__input-error">
-            Что-то пошло не так..
+            Пожалуйста, введите ваш email.
           </span>
         </label>
         <label className="register-form__field">
@@ -41,9 +47,12 @@ function Register() {
             name="password"
             className="register-form__input"
             type="password"
+            autoComplete="off"
+            placeholder="Введите ваш пароль"
+            required
           />
           <span className="register-form__input-error">
-            Что-то пошло не так..
+            Пожалуйста, введите ваш пароль.
           </span>
         </label>
         <button type="submit" className="register-form__btn-signup">

@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import "./Portfolio.css";
-import arrow from "../../../images/arrow.svg";
+// import arrow from "../../../images/arrow.svg";
 
 function Portfolio() {
   return (
@@ -13,7 +13,7 @@ function Portfolio() {
         rel="noopener noreferrer"
       >
         <p className="portfolio__text">Статичный сайт</p>
-        <img src={arrow} alt="стрелка" className="portfolio__arrow" />
+        <div className="portfolio__arrow">↗</div>
       </Link>
       <Link
         to="https://herowarmup.github.io/russian-travel/"
@@ -22,7 +22,7 @@ function Portfolio() {
         rel="noopener noreferrer"
       >
         <p className="portfolio__text">Адаптивный сайт</p>
-        <img src={arrow} alt="стрелка" className="portfolio__arrow" />
+        <div className="portfolio__arrow">↗</div>
       </Link>
       <Link
         to="https://herowarmup.nomoredomains.monster/"
@@ -31,7 +31,7 @@ function Portfolio() {
         rel="noopener noreferrer"
       >
         <p className="portfolio__text">Одностраничное приложение</p>
-        <img src={arrow} alt="стрелка" className="portfolio__arrow" />
+        <div className="portfolio__arrow">↗</div>
       </Link>
     </section>
   );

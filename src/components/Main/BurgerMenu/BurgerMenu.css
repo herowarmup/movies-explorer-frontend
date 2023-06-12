@@ -45,6 +45,12 @@
   line-height: 16px;
   color: #000;
   text-decoration: none;
+  opacity: 1;
+  transition: opacity 0.2s ease-in-out;
+}
+
+.menu__link-account:hover {
+  opacity: 0.7;
 }
 
 .menu__item:last-child {
@@ -57,6 +63,7 @@
   font-weight: 500;
   font-size: 16px;
   line-height: 1.2;
+  opacity: 1;
   transition: opacity 0.2s ease-in-out;
 }
 
@@ -68,6 +75,13 @@
   position: absolute;
   top: 23px;
   right: 23px;
+  opacity: 1;
+  transition: opacity 0.2s ease-in-out;
+  cursor: pointer;
+}
+
+.menu__close-btn:hover {
+  opacity: 0.7;
 }
 
 .menu__link--active {

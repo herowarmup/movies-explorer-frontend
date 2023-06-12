@@ -31,7 +31,7 @@
   line-height: 16px;
   align-items: center;
   background-color: #e8e8e8;
-  color: #000;
+  color: #fff;
   width: 96px;
   height: 36px;
   border: none;
@@ -39,11 +39,11 @@
   margin-right: 10px;
   padding: 0;
   cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
 }
 
 .promo__nav-btn:hover {
   background-color: #000;
-  color: #fff;
 }
 
 .promo__nav-btn:last-child {
@@ -72,14 +72,18 @@
   .promo__title {
     max-width: 292px;
     font-size: 29px;
+    line-height: 37px;
     margin: auto auto 212px;
   }
 
   .promo__nav {
+    width: 256px;
     padding-bottom: 17px;
   }
 
   .promo__nav-btn {
+    width: 82px;
+    height: 26px;
     font-size: 10px;
   }
 }

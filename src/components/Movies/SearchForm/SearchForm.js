@@ -13,11 +13,7 @@ function SearchForm() {
   return (
     <section className="search-form-container">
       <form className="search-form">
-        <input
-          className="search-form__input"
-          type="text"
-          placeholder="Поиск фильма"
-        />
+        <input className="search-form__input" type="text" placeholder="Фильм" />
         <button className="search-form__btn">
           <img src={find} alt="Найти фильм" className="search-form__find" />
         </button>

@@ -23,6 +23,7 @@
   font-weight: 400;
   font-size: 14px;
   line-height: 20px;
+  letter-spacing: -0.04em;
   margin: 0 auto;
   padding: 0;
   padding-bottom: 100px;
@@ -87,5 +88,35 @@
 @media screen and (max-width: 480px) {
   .techs {
     padding: 70px 18px;
+  }
+
+  .techs__list {
+    display: grid;
+    grid-template-columns: repeat(2, 84px);
+    grid-auto-rows: minmax(57px, auto);
+    gap: 10px;
+    justify-content: center;
+  }
+
+  .techs__list-item {
+    margin: 0;
+    width: 84px;
+    height: 57px;
+  }
+
+  .techs__title {
+    font-size: 30px;
+    line-height: 36px;
+    text-align: center;
+    letter-spacing: -0.04em;
+    margin: 60px auto 22px;
+  }
+
+  .techs__description {
+    width: 292px;
+    font-size: 11px;
+    line-height: 16px;
+    letter-spacing: -0.04em;
+    padding-bottom: 50px;
   }
 }

@@ -12,10 +12,14 @@
   line-height: 34px;
   color: #a0a0a0;
   border: none;
-  padding-bottom: 13px;
+  padding-bottom: 0;
   flex-grow: 1;
   outline: none;
   width: 100%;
+}
+
+.search-form__input:focus {
+  color: #000;
 }
 
 .search-form__btn {
@@ -91,11 +95,27 @@
 
 @media screen and (max-width: 480px) {
   .search-form {
-    margin: 90px 14px 40px;
+    margin: 79px 14px 40px;
   }
 
   .toggle-container {
     justify-content: center;
     margin-bottom: 50px;
+  }
+
+  .toggle {
+    order: 2;
+    margin-left: 11px;
+  }
+
+  .toggle-text {
+    margin-left: 0;
+    font-size: 11px;
+    line-height: 18px;
+  }
+
+  .search-form__input {
+    font-size: 18px;
+    line-height: 22px;
   }
 }

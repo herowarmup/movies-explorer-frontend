@@ -17,6 +17,7 @@
   display: flex;
   color: #000;
   padding-top: 20px;
+  align-items: center;
   justify-content: space-between;
   text-decoration: none;
   opacity: 1;
@@ -42,8 +43,10 @@
 }
 
 .portfolio__arrow {
-  width: 12px;
-  height: 12px;
+  font-weight: 400;
+  font-size: 30px;
+  line-height: 60px;
+  letter-spacing: -0.04em;
 }
 
 @media screen and (max-width: 850px) {
@@ -52,6 +55,10 @@
   }
 
   .portfolio__text {
+    font-size: 28px;
+  }
+
+  .portfolio__arrow {
     font-size: 28px;
   }
 }
@@ -68,5 +75,16 @@
 
   .portfolio__text {
     font-size: 18px;
+  }
+  .portfolio__arrow {
+    font-size: 18px;
+  }
+
+  .portfolio__link {
+    padding-top: 14px;
+  }
+
+  .portfolio__link--border {
+    padding-bottom: 1px;
   }
 }

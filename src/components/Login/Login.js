@@ -16,6 +16,9 @@ function Login() {
             name="email"
             className="login-form__input"
             type="text"
+            placeholder="Введите ваш e-mail"
+            minLength="2"
+            maxLength="30"
             required
           />
           <span className="login-form__input-error">Что-то пошло не так..</span>
@@ -26,6 +29,9 @@ function Login() {
             name="password"
             className="login-form__input"
             type="password"
+            autoComplete="off"
+            placeholder="Введите ваш пароль"
+            required
           />
           <span className="login-form__input-error">Что-то пошло не так..</span>
         </label>

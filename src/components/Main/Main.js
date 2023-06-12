@@ -11,7 +11,7 @@ import ScrollUp from "../../shared/ScrollUp/ScrollUp";
 
 function Main() {
   return (
-    <section className="main">
+    <main className="main">
       <Header authorization="not-auth" />
       <Promo />
       <AboutProject />
@@ -20,7 +20,7 @@ function Main() {
       <Portfolio />
       <Footer />
       <ScrollUp />
-    </section>
+    </main>
   );
 }
 

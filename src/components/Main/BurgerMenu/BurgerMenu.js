@@ -1,5 +1,7 @@
 import { Link, useLocation } from "react-router-dom";
+
 import closeIcon from "../../../images/close.svg";
+
 import "./BurgerMenu.css";
 
 function BurgerMenu({ isOpen, handleCloseClick }) {
