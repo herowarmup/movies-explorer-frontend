@@ -1,0 +1,32 @@
+.scroll {
+  position: fixed;
+  right: 2%;
+  bottom: 16px;
+  z-index: 1;
+  visibility: hidden;
+  transition: opacity 0.2s ease-in-out;
+}
+
+.scroll.show {
+  visibility: visible;
+}
+
+.scroll:hover {
+  cursor: pointer;
+  opacity: 0.8;
+}
+
+.scroll__image {
+  width: 40px;
+  border-radius: 100px;
+}
+
+@media screen and (max-width: 850px) {
+  .scroll {
+    opacity: 0;
+  }
+
+  .scroll.show {
+    opacity: 0;
+  }
+}
