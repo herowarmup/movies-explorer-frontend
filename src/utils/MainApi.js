@@ -1,4 +1,4 @@
-const BASE_URL = "http://localhost:3000";
+const BASE_URL = "https://api.hero-movies.nomoredomains.rocks";
 
 async function request(url, method, body, token) {
   const headers = {
