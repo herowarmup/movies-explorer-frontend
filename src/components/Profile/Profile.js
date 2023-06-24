@@ -34,7 +34,7 @@ function Profile({ loggedIn, handleUpdateUserInfo, handleSignOut }) {
       const { name, email } = values;
 
       try {
-        await handleUpdateUserInfo(email, name);
+        await handleUpdateUserInfo(name, email);
 
         setIsEditing(false);
         setIsLoading(false);

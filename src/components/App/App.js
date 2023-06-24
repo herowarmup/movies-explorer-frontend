@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from "react";
-import { Routes, Route, useNavigate, useLocation } from "react-router-dom";
+import { Routes, Route, useNavigate } from "react-router-dom";
 import CurrentUserContext from "../../context/CurrentUserContext";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 
@@ -12,9 +12,9 @@ import Login from "../Login/Login";
 import NotFound from "../NotFound/NotFound";
 import Popup from "../../shared/Popup/Popup";
 
+import * as auth from "../../utils/AuthApi";
 import moviesApi from "../../utils/MoviesApi";
-import * as mainApi from "../../utils/MainApi";
-
+import mainApi from "../../utils/MainApi";
 import "./App.css";
 
 function App() {
@@ -22,17 +22,94 @@ function App() {
   const [isLoading, setIsLoading] = useState(false);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const [moreCards, setMoreCards] = useState(0);
-  const [loggedIn, setLoggedIn] = useState(false);
   const [currentUser, setCurrentUser] = useState({});
   const [tokenChecked, setTokenChecked] = useState(false);
   const [savedMovies, setSavedMovies] = useState([]);
+  const [loggedIn, setLoggedIn] = useState(false);
   const [popupVisible, setPopupVisible] = useState(false);
   const [popupMessage, setPopupMessage] = useState("");
   const [popupError, setPopupError] = useState(false);
 
-  const location = useLocation();
-  const currentPath = location.pathname;
   const navigate = useNavigate();
+
+  function handleLogin({ email, password }) {
+    auth
+      .login(email, password)
+      .then((data) => {
+        localStorage.setItem("token", data.token);
+        setLoggedIn(true);
+        navigate("/movies");
+        showPopup("Вы авторизованы.", false);
+      })
+      .catch(() => {
+        showPopup("Что-то пошло не так.", true);
+      });
+  }
+
+  function handleRegister({ name, email, password }) {
+    auth
+      .register(name, email, password)
+      .then(() => {
+        handleLogin({ email, password });
+        setLoggedIn(true);
+        showPopup("Вы зарегистрированы.", false);
+      })
+      .catch(() => {
+        showPopup("Что-то пошло не так.", true);
+      });
+  }
+
+  function handleSignOut() {
+    auth
+      .signout()
+      .then(() => {
+        setLoggedIn(false);
+        navigate("/");
+        localStorage.removeItem("foundedMovies");
+        localStorage.removeItem("shortsMovies");
+        localStorage.removeItem("searchMovieName");
+        localStorage.removeItem("token");
+        showPopup("Вы вышли из системы.", false);
+      })
+      .catch(() => {
+        showPopup("Что-то пошло не так.", true);
+      });
+  }
+
+  const handleTokenCheck = useCallback(() => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      auth
+        .checkToken(token)
+        .then(() => {
+          setLoggedIn(true);
+        })
+        .catch((err) => console.log(err))
+        .finally(() => {
+          setTokenChecked(true);
+        });
+    } else {
+      setTokenChecked(true);
+    }
+  }, []);
+
+  useEffect(() => {
+    handleTokenCheck();
+  }, [handleTokenCheck]);
+
+  useEffect(() => {
+    if (loggedIn) {
+      mainApi
+        .getUserInfo()
+        .then((user) => {
+          setCurrentUser(user);
+          getSavedMovies();
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  }, [loggedIn]);
 
   const showPopup = (message, isError) => {
     setPopupMessage(message);
@@ -114,73 +191,9 @@ function App() {
     handleResize();
   }, [windowWidth, handleResize]);
 
-  useEffect(() => {
-    const handleTokenCheck = () => {
-      const token = localStorage.getItem("token");
-      if (token) {
-        mainApi
-          .checkToken(token)
-          .then(({ data }) => {
-            setLoggedIn(true);
-          })
-          .catch((err) => console.log(err))
-          .finally(() => {
-            setTokenChecked(true);
-          });
-      } else {
-        setTokenChecked(true);
-      }
-    };
-
-    handleTokenCheck();
-  }, [navigate, currentPath]);
-
-  function handleRegister({ name, email, password }) {
+  function handleUpdateUserInfo(name, email) {
     mainApi
-      .register(name, email, password)
-      .then(() => {
-        handleLogin({ email, password });
-        showPopup("Вы зарегистрированы.", false);
-      })
-      .catch(() => {
-        showPopup("Что-то пошло не так.", true);
-      });
-  }
-
-  function handleLogin({ email, password }) {
-    mainApi
-      .login(email, password)
-      .then((data) => {
-        setLoggedIn(true);
-        localStorage.setItem("token", data.token);
-        navigate("/movies");
-        showPopup("Вы авторизованы.", false);
-      })
-      .catch(() => {
-        showPopup("Что-то пошло не так.", true);
-      });
-  }
-
-  function handleSignOut() {
-    mainApi
-      .signout()
-      .then(() => {
-        setLoggedIn(false);
-        navigate("/");
-        localStorage.removeItem("foundedMovies");
-        localStorage.removeItem("shortsMovies");
-        localStorage.removeItem("searchMovieName");
-        localStorage.removeItem("token");
-        showPopup("Вы вышли из системы.", false);
-      })
-      .catch(() => {
-        showPopup("Что-то пошло не так.", true);
-      });
-  }
-
-  function handleUpdateUserInfo(email, name) {
-    mainApi
-      .updateUserInfo(email, name)
+      .updateUserInfo(name, email)
       .then((newData) => {
         setCurrentUser(newData);
         showPopup("Информация успешно обновлена.", false);
@@ -198,20 +211,6 @@ function App() {
         console.log(err.message);
       });
   }
-
-  useEffect(() => {
-    if (loggedIn) {
-      mainApi
-        .getUserInfo()
-        .then((user) => {
-          setCurrentUser(user);
-          getSavedMovies();
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    }
-  }, [loggedIn]);
 
   function isSaved(card) {
     return savedMovies.some(

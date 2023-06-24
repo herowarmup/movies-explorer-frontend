@@ -37,7 +37,6 @@ function Login({ handleLogin, loggedIn }) {
             value={values.email?.value}
             onChange={handleChange}
             required
-            disabled={!isValid}
           />
           {errors.email ? (
             <span className="login-form__input-error">{errors.email}</span>
@@ -54,10 +53,10 @@ function Login({ handleLogin, loggedIn }) {
             placeholder="Введите ваш пароль"
             minLength="6"
             maxLength="30"
+            autoComplete="off"
             value={values.password?.value}
             onChange={handleChange}
             required
-            disabled={!isValid}
           />
           {errors.password ? (
             <span className="login-form__input-error">{errors.password}</span>
@@ -65,7 +64,11 @@ function Login({ handleLogin, loggedIn }) {
             <span className="login-form__input-error"> </span>
           )}
         </label>
-        <button type="submit" className="login-form__btn-signin">
+        <button
+          type="submit"
+          className="login-form__btn-signin"
+          disabled={!isValid}
+        >
           Войти
         </button>
       </form>
