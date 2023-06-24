@@ -2,13 +2,14 @@ import { Link } from "react-router-dom";
 import "./Footer.css";
 
 function Footer() {
+  const currentYear = new Date().getFullYear();
   return (
     <footer className="footer">
       <h4 className="footer__info">
         Учебный проект Яндекс.Практикум х BeatFilm.
       </h4>
       <div className="footer__container">
-        <p className="footer__copy">&copy; 2022 Артём Морозов</p>
+        <p className="footer__copy">&copy; {currentYear} Артём Морозов</p>
         <div className="footer__links">
           <Link
             to="https://practicum.yandex.ru"

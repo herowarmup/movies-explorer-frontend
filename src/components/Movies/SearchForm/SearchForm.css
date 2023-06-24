@@ -73,6 +73,11 @@
   background-color: #2be080;
 }
 
+.toggle_unchecked .toggle__inner {
+  transform: translateX(0px);
+  background-color: #a0a0a0;
+}
+
 .toggle-text {
   margin: 0;
   margin-left: 14px;

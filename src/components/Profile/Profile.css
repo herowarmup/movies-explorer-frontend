@@ -92,6 +92,17 @@
   opacity: 0.7;
 }
 
+.profile-form__input-error {
+  height: 12px;
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 12px;
+  margin: 0;
+  padding: 0;
+  color: #ff4062;
+  text-align: left;
+}
+
 @media screen and (max-width: 850px) {
   .profile {
     padding-top: 236px;

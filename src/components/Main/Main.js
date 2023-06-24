@@ -9,10 +9,10 @@ import Portfolio from "./Portfilio/Portfolio";
 import Footer from "../../shared/Footer/Footer";
 import ScrollUp from "../../shared/ScrollUp/ScrollUp";
 
-function Main() {
+function Main({ loggedIn }) {
   return (
     <main className="main">
-      <Header authorization="not-auth" />
+      <Header loggedIn={loggedIn} />
       <Promo />
       <AboutProject />
       <Techs />

@@ -2,24 +2,10 @@ import { Link } from "react-router-dom";
 import "../NavTab/NavTab.css";
 import burgerIcon from "../../../images/burger.svg";
 
-function NavTab({ authorization, handleBurgerClick }) {
+function NavTab({ loggedIn, handleBurgerClick }) {
   return (
     <nav className="nav-tab">
-      {authorization === "not-auth" && (
-        <ul className="nav-tab__nav-list">
-          <li>
-            <Link to="/signup" className="nav-tab__link">
-              <button className="nav-tab__btn-register">Регистрация</button>
-            </Link>
-          </li>
-          <li>
-            <Link to="/signin" className="nav-tab__link">
-              <button className="nav-tab__btn-login">Войти</button>
-            </Link>
-          </li>
-        </ul>
-      )}
-      {authorization === "auth" && (
+      {loggedIn ? (
         <ul className="nav-tab__nav-list">
           <li>
             <Link to="/profile" className="nav-tab__link">
@@ -32,6 +18,19 @@ function NavTab({ authorization, handleBurgerClick }) {
                 className="nav-tab__burger-icon"
               ></img>
             </button>
+          </li>
+        </ul>
+      ) : (
+        <ul className="nav-tab__nav-list">
+          <li>
+            <Link to="/signup" className="nav-tab__link">
+              <button className="nav-tab__btn-register">Регистрация</button>
+            </Link>
+          </li>
+          <li>
+            <Link to="/signin" className="nav-tab__link">
+              <button className="nav-tab__btn-login">Войти</button>
+            </Link>
           </li>
         </ul>
       )}

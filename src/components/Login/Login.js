@@ -1,15 +1,30 @@
 import { Link } from "react-router-dom";
-import "./Login.css";
+import { useFormAndValidation } from "../../hooks/useFormAndValidation";
+
 import logo from "../../images/logo.svg";
 
-function Login() {
+import "./Login.css";
+
+function Login({ handleLogin, loggedIn }) {
+  const { values, handleChange, errors, isValid, resetForm } =
+    useFormAndValidation();
+
+  function handleFormSubmit(e) {
+    e.preventDefault();
+    handleLogin({
+      email: values.email,
+      password: values.password,
+    });
+    resetForm();
+  }
+
   return (
     <div className="login-form__container">
       <Link to="/" className="login-form__logo">
         <img src={logo} alt="Логотип" />
       </Link>
       <h1 className="login-form__title">Рады видеть!</h1>
-      <form className="login-form">
+      <form className="login-form" onSubmit={handleFormSubmit} noValidate>
         <label className="login-form__field">
           <span className="login-form__field-label">E-mail</span>
           <input
@@ -19,9 +34,16 @@ function Login() {
             placeholder="Введите ваш e-mail"
             minLength="2"
             maxLength="30"
+            value={values.email?.value}
+            onChange={handleChange}
             required
+            disabled={!isValid}
           />
-          <span className="login-form__input-error">Что-то пошло не так..</span>
+          {errors.email ? (
+            <span className="login-form__input-error">{errors.email}</span>
+          ) : (
+            <span className="login-form__input-error"> </span>
+          )}
         </label>
         <label className="login-form__field">
           <span className="login-form__field-label">Пароль</span>
@@ -29,11 +51,19 @@ function Login() {
             name="password"
             className="login-form__input"
             type="password"
-            autoComplete="off"
             placeholder="Введите ваш пароль"
+            minLength="6"
+            maxLength="30"
+            value={values.password?.value}
+            onChange={handleChange}
             required
+            disabled={!isValid}
           />
-          <span className="login-form__input-error">Что-то пошло не так..</span>
+          {errors.password ? (
+            <span className="login-form__input-error">{errors.password}</span>
+          ) : (
+            <span className="login-form__input-error"> </span>
+          )}
         </label>
         <button type="submit" className="login-form__btn-signin">
           Войти
