@@ -4,4 +4,4 @@
 
 IP 51.250.73.135
 
-Backend https://hero-movies.nomoredomains.rocks
+Frontend https://hero-movies.nomoreparties.sbs
