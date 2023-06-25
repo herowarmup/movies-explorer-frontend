@@ -76,8 +76,8 @@ class Api {
 }
 
 const api = new Api({
-  baseUrl: "https://api.hero-movies.nomoredomains.rocks",
-  // baseUrl: "http://localhost:3000",
+  // baseUrl: "http://api.hero-movies.nomoredomains.rocks",
+  baseUrl: "http://localhost:3000",
   headers: {
     "Content-Type": "application/json",
   },
