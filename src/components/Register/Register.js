@@ -11,6 +11,14 @@ function Register({ handleRegister }) {
 
   function handleFormSubmit(e) {
     e.preventDefault();
+
+    const formErrors = Object.values(errors);
+    const hasErrors = formErrors.some((error) => error !== "");
+
+    if (hasErrors) {
+      return;
+    }
+
     handleRegister({
       name: values.name,
       email: values.email,
@@ -33,10 +41,11 @@ function Register({ handleRegister }) {
             className="register-form__input"
             id="name"
             type="name"
+            autoComplete="off"
             placeholder="Введите ваше имя"
-            minLength="2"
-            maxLength="30"
-            value={values.name?.value}
+            minLength={2}
+            maxLength={30}
+            value={values.name || ""}
             onChange={handleChange}
           />
           {errors.name && (
@@ -52,9 +61,9 @@ function Register({ handleRegister }) {
             type="email"
             autoComplete="off"
             placeholder="Введите ваш email"
-            minLength="2"
-            maxLength="30"
-            value={values.email?.value}
+            minLength={2}
+            maxLength={30}
+            value={values.email || ""}
             onChange={handleChange}
           />
           {errors.email && (
@@ -70,10 +79,10 @@ function Register({ handleRegister }) {
             type="password"
             autoComplete="off"
             placeholder="Введите ваш пароль"
-            value={values.password?.value}
+            value={values.password || ""}
             onChange={handleChange}
             required
-            minLength={6}
+            minLength={8}
           />
           {errors.password && (
             <span className="register-form__input-error">
@@ -84,7 +93,7 @@ function Register({ handleRegister }) {
         <button
           type="submit"
           className="register-form__btn-signup"
-          disabled={!isValid}
+          disabled={!isValid || Object.keys(values).length === 0}
         >
           Зарегистрироваться
         </button>

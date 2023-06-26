@@ -1,5 +1,5 @@
-// const BASE_URL = "http://api.hero-movies.nomoredomains.rocks";
-const BASE_URL = "http://localhost:3000";
+const BASE_URL = "https://api.hero-movies.nomoredomains.rocks";
+// const BASE_URL = "http://localhost:3000";
 
 async function request(url, method, body, token) {
   const headers = {
@@ -33,8 +33,8 @@ async function request(url, method, body, token) {
   return await response.json();
 }
 
-export const register = (email, password) => {
-  return request("/signup", "POST", { email, password });
+export const register = (name, email, password) => {
+  return request("/signup", "POST", { name, email, password });
 };
 
 export const login = (email, password) => {

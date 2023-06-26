@@ -83,33 +83,27 @@ function App() {
         .checkToken(token)
         .then(() => {
           setLoggedIn(true);
+          mainApi
+            .getUserInfo()
+            .then((user) => {
+              setCurrentUser(user);
+              getSavedMovies();
+            })
+            .catch((err) => console.log(err))
+            .finally(() => {
+              setTokenChecked(true);
+            });
         })
-        .catch((err) => console.log(err))
-        .finally(() => {
-          setTokenChecked(true);
-        });
+        .catch((err) => console.log(err));
     } else {
       setTokenChecked(true);
     }
   }, []);
+  
 
   useEffect(() => {
     handleTokenCheck();
   }, [handleTokenCheck]);
-
-  useEffect(() => {
-    if (loggedIn) {
-      mainApi
-        .getUserInfo()
-        .then((user) => {
-          setCurrentUser(user);
-          getSavedMovies();
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    }
-  }, [loggedIn]);
 
   const showPopup = (message, isError) => {
     setPopupMessage(message);

@@ -23,7 +23,6 @@ class Api {
 
   getUserInfo() {
     return this._request(`${this._baseUrl}/users/me`, {
-      method: "GET",
       credentials: "include",
       headers: this._headers,
     });
@@ -76,8 +75,8 @@ class Api {
 }
 
 const api = new Api({
-  // baseUrl: "http://api.hero-movies.nomoredomains.rocks",
-  baseUrl: "http://localhost:3000",
+  baseUrl: "https://api.hero-movies.nomoredomains.rocks",
+  // baseUrl: "http://localhost:3000",
   headers: {
     "Content-Type": "application/json",
   },
