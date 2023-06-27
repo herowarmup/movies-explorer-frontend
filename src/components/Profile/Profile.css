@@ -103,6 +103,15 @@
   text-align: left;
 }
 
+.profile__btn-edit[disabled] {
+  color: #999;
+  cursor: default;
+}
+
+.profile__btn-edit[disabled]:hover {
+  opacity: 1;
+}
+
 @media screen and (max-width: 850px) {
   .profile {
     padding-top: 236px;

@@ -33,6 +33,12 @@ function Profile({ loggedIn, handleUpdateUserInfo, handleSignOut }) {
 
       const { name, email } = values;
 
+      if (name === currentUser.name && email === currentUser.email) {
+        setIsEditing(false);
+        setIsLoading(false);
+        return;
+      }
+
       try {
         await handleUpdateUserInfo(name, email);
 
@@ -58,6 +64,8 @@ function Profile({ loggedIn, handleUpdateUserInfo, handleSignOut }) {
               name="name"
               className="profile__input"
               type="text"
+              minLength={2}
+              maxLength={30}
               value={values.name || ""}
               onChange={handleChange}
               readOnly={!isEditing}
@@ -77,6 +85,8 @@ function Profile({ loggedIn, handleUpdateUserInfo, handleSignOut }) {
               name="email"
               className="profile__input"
               type="email"
+              minLength={2}
+              maxLength={30}
               value={values.email || ""}
               onChange={handleChange}
               readOnly={!isEditing}
@@ -94,7 +104,12 @@ function Profile({ loggedIn, handleUpdateUserInfo, handleSignOut }) {
               type="button"
               className="profile__btn-edit"
               onClick={handleSaveClick}
-              disabled={!isValid || isLoading}
+              disabled={
+                !isValid ||
+                isLoading ||
+                (values.name === currentUser.name &&
+                  values.email === currentUser.email)
+              }
             >
               {isLoading ? "Сохранение..." : "Сохранить"}
             </button>
