@@ -11,19 +11,7 @@ function Register({ handleRegister }) {
 
   function handleFormSubmit(e) {
     e.preventDefault();
-
-    const formErrors = Object.values(errors);
-    const hasErrors = formErrors.some((error) => error !== "");
-
-    if (hasErrors) {
-      return;
-    }
-
-    handleRegister({
-      name: values.name,
-      email: values.email,
-      password: values.password,
-    });
+    handleRegister(values);
     resetForm();
   }
 
@@ -47,6 +35,7 @@ function Register({ handleRegister }) {
             maxLength={30}
             value={values.name || ""}
             onChange={handleChange}
+            required
           />
           {errors.name && (
             <span className="register-form__input-error">{errors.name}</span>
@@ -65,6 +54,7 @@ function Register({ handleRegister }) {
             maxLength={30}
             value={values.email || ""}
             onChange={handleChange}
+            required
           />
           {errors.email && (
             <span className="register-form__input-error">{errors.email}</span>
@@ -93,7 +83,7 @@ function Register({ handleRegister }) {
         <button
           type="submit"
           className="register-form__btn-signup"
-          disabled={!isValid || Object.keys(values).length === 0}
+          disabled={!isValid}
         >
           Зарегистрироваться
         </button>

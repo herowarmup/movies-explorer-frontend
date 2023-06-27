@@ -4,22 +4,22 @@ import validator from "validator";
 export function useFormAndValidation() {
   const [values, setValues] = useState({});
   const [errors, setErrors] = useState({});
-  const [isValid, setIsValid] = useState(true);
+  const [isValid, setIsValid] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setValues({ ...values, [name]: value });
 
-    let emailError = '';
-    if (name === 'email') {
-      if (!value) {
-        emailError = 'Введите ваш email';
-      } else if (!validator.isEmail(value)) {
-        emailError = 'Некорректный формат email';
+    if (name === "email") {
+      if (!validator.isEmail(value)) {
+        e.target.setCustomValidity("Некорректный формат email");
+      } else {
+        e.target.setCustomValidity("");
       }
     }
 
-    setErrors({ ...errors, [name]: emailError });
+    setValues({ ...values, [name]: value });
+    setErrors({ ...errors, [name]: e.target.validationMessage });
     setIsValid(e.target.closest("form").checkValidity());
   };
 
