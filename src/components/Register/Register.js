@@ -1,11 +1,11 @@
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import { useFormAndValidation } from "../../hooks/useFormAndValidation";
 
 import logo from "../../images/logo.svg";
 
 import "./Register.css";
 
-function Register({ handleRegister }) {
+function Register({ handleRegister, loggedIn }) {
   const { values, handleChange, errors, isValid, resetForm } =
     useFormAndValidation();
 
@@ -13,6 +13,10 @@ function Register({ handleRegister }) {
     e.preventDefault();
     handleRegister(values);
     resetForm();
+  }
+
+  if (loggedIn) {
+    return <Navigate to="/" />;
   }
 
   return (

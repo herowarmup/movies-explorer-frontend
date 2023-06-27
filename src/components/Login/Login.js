@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import { useFormAndValidation } from "../../hooks/useFormAndValidation";
 
 import logo from "../../images/logo.svg";
@@ -13,6 +13,10 @@ function Login({ handleLogin, loggedIn }) {
     e.preventDefault();
     handleLogin(values);
     resetForm();
+  }
+
+  if (loggedIn) {
+    return <Navigate to="/" />;
   }
 
   return (
