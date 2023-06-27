@@ -38,8 +38,17 @@ function App() {
       .then((data) => {
         localStorage.setItem("token", data.token);
         setLoggedIn(true);
-        navigate("/movies");
-        showPopup("Вы авторизованы.", false);
+        mainApi
+          .getUserInfo()
+          .then((user) => {
+            setCurrentUser(user);
+            getSavedMovies();
+          })
+          .catch((err) => console.log(err))
+          .finally(() => {
+            navigate("/movies");
+            showPopup("Вы авторизованы.", false);
+          });
       })
       .catch(() => {
         showPopup("Что-то пошло не так.", true);
@@ -63,6 +72,7 @@ function App() {
     auth
       .signout()
       .then(() => {
+        setCurrentUser({});
         setLoggedIn(false);
         navigate("/");
         localStorage.removeItem("foundedMovies");
@@ -99,11 +109,10 @@ function App() {
       setTokenChecked(true);
     }
   }, []);
-  
 
   useEffect(() => {
     handleTokenCheck();
-  }, [handleTokenCheck]);
+  }, []);
 
   const showPopup = (message, isError) => {
     setPopupMessage(message);
