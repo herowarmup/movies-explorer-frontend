@@ -104,7 +104,11 @@ function App() {
               setTokenChecked(true);
             });
         })
-        .catch((err) => console.log(err));
+        .catch((err) => {
+          console.log(err);
+          setLoggedIn(false);
+          setTokenChecked(true);
+        });
     } else {
       setTokenChecked(true);
     }
