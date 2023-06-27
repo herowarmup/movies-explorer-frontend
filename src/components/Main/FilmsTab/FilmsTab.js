@@ -1,13 +1,12 @@
 import { Link, useLocation } from "react-router-dom";
 import "./FilmsTab.css";
 
-function FilmsTab({ authorization }) {
+function FilmsTab({ loggedIn }) {
   const location = useLocation();
 
   return (
     <nav className="films-tab">
-      {authorization === "not-auth" && " "}
-      {authorization === "auth" && (
+      {loggedIn ? (
         <ul className="films-tab__nav-list">
           <li>
             <Link to="/movies" className="films-tab__link">
@@ -36,7 +35,7 @@ function FilmsTab({ authorization }) {
             </Link>
           </li>
         </ul>
-      )}
+      ) : null}
     </nav>
   );
 }

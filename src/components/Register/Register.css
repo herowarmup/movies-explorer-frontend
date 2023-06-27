@@ -118,6 +118,16 @@
   left: 0;
 }
 
+.register-form__btn-signup[disabled] {
+  background-color: #ccc;
+  color: #999;
+  cursor: default;
+}
+
+.register-form__btn-signup[disabled]:hover {
+  opacity: 1;
+}
+
 @media screen and (max-width: 850px) {
   .register-form__container {
     padding-top: 232px;

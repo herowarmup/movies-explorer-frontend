@@ -37,6 +37,10 @@
   transition: opacity 0.2s ease-in-out;
 }
 
+.movies__not-found {
+  padding: 0 84px;
+}
+
 .movies-card-list__more-btn:hover {
   opacity: 0.7;
   border: 1px solid #a0a0a0;

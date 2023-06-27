@@ -1,15 +1,31 @@
-import { Link } from "react-router-dom";
-import "./Login.css";
+import { Link, Navigate } from "react-router-dom";
+import { useFormAndValidation } from "../../hooks/useFormAndValidation";
+
 import logo from "../../images/logo.svg";
 
-function Login() {
+import "./Login.css";
+
+function Login({ handleLogin, loggedIn }) {
+  const { values, handleChange, errors, isValid, resetForm } =
+    useFormAndValidation();
+
+  function handleFormSubmit(e) {
+    e.preventDefault();
+    handleLogin(values);
+    resetForm();
+  }
+
+  if (loggedIn) {
+    return <Navigate to="/" />;
+  }
+
   return (
     <div className="login-form__container">
       <Link to="/" className="login-form__logo">
         <img src={logo} alt="Логотип" />
       </Link>
       <h1 className="login-form__title">Рады видеть!</h1>
-      <form className="login-form">
+      <form className="login-form" onSubmit={handleFormSubmit} noValidate>
         <label className="login-form__field">
           <span className="login-form__field-label">E-mail</span>
           <input
@@ -17,11 +33,17 @@ function Login() {
             className="login-form__input"
             type="text"
             placeholder="Введите ваш e-mail"
-            minLength="2"
-            maxLength="30"
+            minLength={2}
+            maxLength={30}
+            value={values.email || ""}
+            onChange={handleChange}
             required
           />
-          <span className="login-form__input-error">Что-то пошло не так..</span>
+          {errors.email ? (
+            <span className="login-form__input-error">{errors.email}</span>
+          ) : (
+            <span className="login-form__input-error"> </span>
+          )}
         </label>
         <label className="login-form__field">
           <span className="login-form__field-label">Пароль</span>
@@ -29,13 +51,24 @@ function Login() {
             name="password"
             className="login-form__input"
             type="password"
-            autoComplete="off"
             placeholder="Введите ваш пароль"
+            minLength={8}
+            autoComplete="off"
+            value={values.password || ""}
+            onChange={handleChange}
             required
           />
-          <span className="login-form__input-error">Что-то пошло не так..</span>
+          {errors.password ? (
+            <span className="login-form__input-error">{errors.password}</span>
+          ) : (
+            <span className="login-form__input-error"> </span>
+          )}
         </label>
-        <button type="submit" className="login-form__btn-signin">
+        <button
+          type="submit"
+          className="login-form__btn-signin"
+          disabled={!isValid}
+        >
           Войти
         </button>
       </form>

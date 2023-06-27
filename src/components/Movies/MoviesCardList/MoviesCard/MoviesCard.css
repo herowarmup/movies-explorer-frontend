@@ -1,9 +1,9 @@
 .card {
   display: grid;
   grid-template-areas:
-    "title title like"
-    "duration duration like"
-    "photo photo photo";
+    "title like"
+    "duration like"
+    "photo photo";
   grid-template-rows: 2fr auto;
 }
 
@@ -51,4 +51,8 @@
   grid-area: photo;
   aspect-ratio: 2 / 1;
   width: 100%;
+}
+
+.card__trailer-link {
+  grid-area: photo;
 }
