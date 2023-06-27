@@ -196,6 +196,10 @@ function App() {
   useEffect(() => {
     window.addEventListener("resize", checkWindowWidth);
     handleResize();
+
+    return () => {
+      window.removeEventListener("resize", checkWindowWidth);
+    };
   }, [windowWidth, handleResize]);
 
   function handleUpdateUserInfo(name, email) {
