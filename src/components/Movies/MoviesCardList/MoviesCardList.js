@@ -16,11 +16,13 @@ function MoviesCardList({
 }) {
   const location = useLocation();
 
-  if (isLoading) return <Preloader />;
-  if (cards.length === 0)
-    return <div className="movies__not-found">Ничего не найдено</div>;
-
   const foundMovies = JSON.parse(localStorage.getItem("foundedMovies"));
+
+  if (isLoading) return <Preloader />;
+  if (!foundMovies)
+    return <div className="movies__not-found">Введите поисковой запрос</div>;
+  if (cards.length === 0 && foundMovies.length === 0)
+    return <div className="movies__not-found">Ничего не найдено</div>;
 
   return (
     <section className="movies-card-list">
