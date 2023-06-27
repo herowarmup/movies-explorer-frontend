@@ -118,6 +118,16 @@
   left: 0;
 }
 
+.login-form__btn-signin[disabled] {
+  background-color: #ccc;
+  color: #999;
+  cursor: default;
+}
+
+.login-form__btn-signin[disabled]:hover {
+  opacity: 1;
+}
+
 @media screen and (max-width: 850px) {
   .login-form__container {
     padding-top: 232px;

@@ -11,10 +11,7 @@ function Login({ handleLogin, loggedIn }) {
 
   function handleFormSubmit(e) {
     e.preventDefault();
-    handleLogin({
-      email: values.email,
-      password: values.password,
-    });
+    handleLogin(values);
     resetForm();
   }
 
@@ -32,9 +29,9 @@ function Login({ handleLogin, loggedIn }) {
             className="login-form__input"
             type="text"
             placeholder="Введите ваш e-mail"
-            minLength="2"
-            maxLength="30"
-            value={values.email?.value}
+            minLength={2}
+            maxLength={30}
+            value={values.email || ""}
             onChange={handleChange}
             required
           />
@@ -51,10 +48,9 @@ function Login({ handleLogin, loggedIn }) {
             className="login-form__input"
             type="password"
             placeholder="Введите ваш пароль"
-            minLength="6"
-            maxLength="30"
+            minLength={8}
             autoComplete="off"
-            value={values.password?.value}
+            value={values.password || ""}
             onChange={handleChange}
             required
           />

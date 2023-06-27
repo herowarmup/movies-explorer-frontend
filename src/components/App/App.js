@@ -112,7 +112,7 @@ function App() {
 
   useEffect(() => {
     handleTokenCheck();
-  }, []);
+  }, [handleTokenCheck]);
 
   const showPopup = (message, isError) => {
     setPopupMessage(message);
